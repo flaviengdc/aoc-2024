@@ -1,0 +1,1 @@
+console.log([...(await Bun.file("input.txt").text()).matchAll(/mul\((?<a>\d{1,3}),(?<b>\d{1,3})\)/g)].reduce((acc,{groups:{a,b}})=>acc+a*b,0))

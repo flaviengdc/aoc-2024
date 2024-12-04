@@ -1,0 +1,1 @@
+console.log([...(await Bun.file("input.txt").text()).matchAll(/mul\((?<a>\d{1,3}),(?<b>\d{1,3})\)|do\(\)|don't\(\)/g)].reduce(({e,t},{groups:{a,b},[0]:d})=>({e:a!==undefined?e:+(d==='do()'),t:t+(a!==undefined&&e?a*b:0)}),{e:1,t:0}).t)
