@@ -1,0 +1,81 @@
+Absolute takes Number
+If Number is greater than 0 return Number
+Return Number * -1
+
+RemoveItemAtIndex takes Array and Index
+    Push NewArray
+    For Item and ItemIndex in Array
+        If ItemIndex isn't Index
+            Push NewArray with Item
+        End
+    End
+    Return NewArray
+
+ArrayOfStringToArrayOfNumber takes ArrayS
+    Push ArrayN
+    For String in ArrayS
+        Cast String with 10
+        Push ArrayN with String
+    End
+
+IsOneSubLevelsValid takes Levels
+    Safe is false
+    For Level and LevelIndex in Levels
+        Put RemoveItemAtIndex taking Levels, LevelIndex into SubLevels
+        Put IsValid taking SubLevels, 1 into IsSubLevelsValid
+        Put IsSubLevelsValid or Safe into Safe
+        If Safe is true Break
+    End
+    Return Safe
+
+IsValid takes Levels and Depth
+    Safe is true
+    Increasing is 0
+    Counter is 0
+    Until Safe is false or Counter is Levels - 1
+        Put Levels at Counter into Current
+        Put Levels at Counter + 1 into Next
+        If Next is not mysterious
+            If Next is greater than Current
+                Put 1 into CurrentIncreasing
+            Else
+                Put -1 into CurrentIncreasing
+            End
+            If Increasing is 0
+                Put CurrentIncreasing into Increasing
+            Else
+                If Increasing isn't CurrentIncreasing
+                    If Depth is 0
+                        Put IsOneSubLevelsValid taking Levels into OneSubLevelsValid
+                        Put Safe and OneSubLevelsValid into Safe
+                    Else
+                        Safe is false
+                    End
+                End
+            End
+            Put Next - Current into Difference
+            Put Absolute taking Difference into Difference
+            If Difference is lower than 1 or Difference is greater than 3
+                If Depth is 0
+                    Put IsOneSubLevelsValid taking Levels into OneSubLevelsValid
+                    Put Safe and OneSubLevelsValid into Safe
+                Else
+                    Safe is false
+                End
+            End
+        End
+        Counter is with 1
+    End
+    Return Safe
+
+Listen to Report
+SafeAmount is 0
+While Report
+    Split Report into Levels with " "
+    Put ArrayOfStringToArrayOfNumber taking Levels in LevelsAsNumbers
+    Put IsValid taking LevelsAsNumbers, 0 into Safe
+    If Safe is true SafeAmount is with 1
+    Listen to Report
+End
+
+Shout SafeAmount
