@@ -2,7 +2,7 @@ package main
 
 import (
 	"aoc/mathy"
-	slice "aoc/utils"
+	"aoc/utils/slice"
 	_ "embed"
 	"fmt"
 	"strconv"

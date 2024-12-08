@@ -1,7 +1,7 @@
 package main
 
 import (
-	slice "aoc/utils"
+	"aoc/utils/slice"
 	_ "embed"
 	"fmt"
 	"strconv"
